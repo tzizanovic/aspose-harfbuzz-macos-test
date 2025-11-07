@@ -1,7 +1,7 @@
 package com.test;
 
 import com.aspose.words.*;
-// *** KLJUČAN IMPORT ZA HARFBUZZ ***
+// *** CRITICAL IMPORT FOR HARFBUZZ ***
 import com.aspose.words.shaping.harfbuzz.HarfBuzzTextShaperFactory;
 
 import java.io.FileWriter;
@@ -12,7 +12,7 @@ public class HarfBuzzTest {
         PrintWriter reportWriter = null;
         
         try {
-            // Kreiraj report file
+            // Create report file
             reportWriter = new PrintWriter(new FileWriter("test-report.txt"));
             
             reportWriter.println("=== Aspose.Words HarfBuzz Test on Darwin/macOS ===");
@@ -31,7 +31,7 @@ public class HarfBuzzTest {
             reportWriter.println("Java Version: " + javaVersion);
             reportWriter.println("Java Vendor: " + javaVendor);
             
-            // Eksplicitna provjera za Darwin
+            // Explicit check for Darwin
             boolean isDarwin = osName.toLowerCase().contains("mac") || 
                               osName.toLowerCase().contains("darwin");
             reportWriter.println("Is Darwin/macOS: " + isDarwin);
@@ -46,7 +46,7 @@ public class HarfBuzzTest {
             reportWriter.println("  Version: " + BuildVersionInfo.getVersion());
             reportWriter.println();
             
-            // Isprintaj i na konzolu
+            // Print to console as well
             System.out.println("=== System Information ===");
             System.out.println("OS: " + osName + " " + osVersion);
             System.out.println("Architecture: " + osArch);
@@ -55,18 +55,18 @@ public class HarfBuzzTest {
             System.out.println("Running on Darwin/macOS: " + isDarwin);
             System.out.println();
             
-            // *** KRITIČNO: Omogući HarfBuzz text shaping ***
+            // *** CRITICAL: Enable HarfBuzz text shaping ***
             reportWriter.println("=== HarfBuzz Configuration ===");
             System.out.println("=== HarfBuzz Configuration ===");
             
-            // Test 1: Osnovni document sa HarfBuzz shaping
+            // Test 1: Basic document with HarfBuzz shaping
             reportWriter.println("TEST 1: Basic document with HarfBuzz shaping");
             System.out.println("Running Test 1: Basic HarfBuzz shaping...");
             
             Document doc = new Document();
             DocumentBuilder builder = new DocumentBuilder(doc);
             
-            // *** KLJUČNO: Postavi HarfBuzz text shaper za layout ***
+            // *** KEY: Set HarfBuzz text shaper for layout ***
             try {
                 doc.getLayoutOptions().setTextShaperFactory(HarfBuzzTextShaperFactory.getInstance());
                 reportWriter.println("✓ HarfBuzz TextShaperFactory enabled successfully!");
@@ -81,7 +81,7 @@ public class HarfBuzzTest {
             
             reportWriter.println();
             
-            // Različiti testovi
+            // Different tests
             Font font = builder.getFont();
             font.setName("Arial");
             font.setSize(14);
@@ -93,28 +93,28 @@ public class HarfBuzzTest {
             builder.writeln("=== HarfBuzz Complex Text Shaping Tests ===");
             builder.writeln();
             
-            // Latin tekst sa ligaturama (HarfBuzz će renderovati ffi, ffl ligatures)
+            // Latin text with ligatures (HarfBuzz will render ffi, ffl ligatures)
             builder.writeln("1. Latin ligatures: office, ffle, ffi, ffl");
             
-            // Arapski tekst (desno-na-lijevo sa HarfBuzz)
+            // Arabic text (right-to-left with HarfBuzz)
             builder.writeln("2. Arabic (RTL with HarfBuzz): مرحبا بالعالم السلام عليكم");
             
-            // Tekst sa dijakriticima
+            // Text with diacritics
             builder.writeln("3. Diacritics: café, naïve, résumé, Zürich, Москва");
             
-            // Devanagari (kompleksni Indijski script - zahtijeva HarfBuzz)
+            // Devanagari (complex Indian script - requires HarfBuzz)
             builder.writeln("4. Devanagari (requires HarfBuzz): नमस्ते दुनिया");
             
-            // Thai (kompleksni script)
+            // Thai (complex script)
             builder.writeln("5. Thai (requires HarfBuzz): สวัสดีชาวโลก");
             
             // Bengali
             builder.writeln("6. Bengali (requires HarfBuzz): হ্যালো বিশ্ব");
             
-            // Hebrew (desno-na-lijevo)
+            // Hebrew (right-to-left)
             builder.writeln("7. Hebrew (RTL): שלום עולם");
             
-            // Testiranje različitih fontova
+            // Testing different fonts
             font.setName("Times New Roman");
             builder.writeln();
             builder.writeln("8. Times New Roman ligatures: office, ffle");
@@ -131,7 +131,7 @@ public class HarfBuzzTest {
             reportWriter.println("✓ DOCX saved: " + outputDocx);
             System.out.println("✓ DOCX saved: " + outputDocx);
             
-            // Test 2: PDF konverzija sa HarfBuzz (ovdje se najčešće vide razlike)
+            // Test 2: PDF conversion with HarfBuzz (this is where differences are most visible)
             reportWriter.println();
             reportWriter.println("TEST 2: PDF conversion with HarfBuzz enabled");
             System.out.println("Running Test 2: PDF conversion with HarfBuzz...");
@@ -155,7 +155,7 @@ public class HarfBuzzTest {
             System.out.println("Running Test 3: Load and re-save...");
             
             Document loadedDoc = new Document(outputDocx);
-            // Ponovo postavi HarfBuzz za novi dokument
+            // Set HarfBuzz again for the new document
             try {
                 loadedDoc.getLayoutOptions().setTextShaperFactory(HarfBuzzTextShaperFactory.getInstance());
             } catch (Exception e) {
@@ -173,7 +173,7 @@ public class HarfBuzzTest {
             System.out.println("Running Test 4: HarfBuzz comparison...");
             
             Document docWithoutHB = new Document();
-            // Eksplicitno ne postavljamo HarfBuzz za ovaj dokument
+            // Explicitly do not set HarfBuzz for this document
             DocumentBuilder builderWithoutHB = new DocumentBuilder(docWithoutHB);
             
             builderWithoutHB.getFont().setName("Arial");
@@ -198,7 +198,7 @@ public class HarfBuzzTest {
                 
                 Document macDoc = new Document();
                 
-                // Postavi HarfBuzz za macOS dokument
+                // Set HarfBuzz for macOS document
                 try {
                     macDoc.getLayoutOptions().setTextShaperFactory(HarfBuzzTextShaperFactory.getInstance());
                 } catch (Exception e) {
@@ -207,7 +207,7 @@ public class HarfBuzzTest {
                 
                 DocumentBuilder macBuilder = new DocumentBuilder(macDoc);
                 
-                // Testiranje sa macOS system fontovima
+                // Testing with macOS system fonts
                 String[] macFonts = {"Helvetica", "Helvetica Neue", "San Francisco", 
                                     "Arial", "Times New Roman", "Courier New", "Georgia"};
                 

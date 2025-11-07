@@ -32,7 +32,6 @@
             <classifier>jdk17</classifier>
         </dependency>
         
-        <!-- HarfBuzz Shaping Plugin - kao classifier -->
         <dependency>
             <groupId>com.aspose</groupId>
             <artifactId>aspose-words</artifactId>
