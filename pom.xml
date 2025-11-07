@@ -29,6 +29,12 @@
             <version>25.10</version>
             <classifier>jdk17</classifier>
         </dependency>
+		 <!-- SkiaSharp plugin za HarfBuzz text shaping -->
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words-skiasharp</artifactId>
+            <version>25.10</version>
+        </dependency>
     </dependencies>
 
     <build>
