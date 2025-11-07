@@ -1,6 +1,9 @@
 package com.test;
 
 import com.aspose.words.*;
+// *** KLJUČAN IMPORT ZA HARFBUZZ ***
+import com.aspose.words.shaping.harfbuzz.HarfBuzzTextShaperFactory;
+
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -66,11 +69,12 @@ public class HarfBuzzTest {
             // *** KLJUČNO: Postavi HarfBuzz text shaper za layout ***
             try {
                 doc.getLayoutOptions().setTextShaperFactory(HarfBuzzTextShaperFactory.getInstance());
-                reportWriter.println("✓ HarfBuzz TextShaperFactory enabled via LayoutOptions");
-                System.out.println("✓ HarfBuzz enabled for text shaping");
+                reportWriter.println("✓ HarfBuzz TextShaperFactory enabled successfully!");
+                System.out.println("✓ HarfBuzz enabled for advanced OpenType text shaping");
             } catch (Exception e) {
                 reportWriter.println("✗ Failed to enable HarfBuzz: " + e.getMessage());
                 System.err.println("✗ Failed to enable HarfBuzz: " + e.getMessage());
+                e.printStackTrace();
                 reportWriter.println("NOTE: HarfBuzz may not be available - continuing with basic shaping");
                 System.out.println("NOTE: Continuing without HarfBuzz...");
             }
@@ -84,7 +88,7 @@ public class HarfBuzzTest {
             
             builder.writeln("Test Platform: " + osName);
             builder.writeln("Architecture: " + osArch);
-            builder.writeln("HarfBuzz: ENABLED via LayoutOptions");
+            builder.writeln("HarfBuzz: ENABLED via com.aspose.words.shaping.harfbuzz");
             builder.writeln();
             builder.writeln("=== HarfBuzz Complex Text Shaping Tests ===");
             builder.writeln();
