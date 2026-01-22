@@ -13,7 +13,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <aspose.words.version>25.10</aspose.words.version>
+        <aspose.words.version>26.1</aspose.words.version>
     </properties>
 
     <repositories>
